@@ -2,6 +2,11 @@ name: Build and Release macOS App
 on:
   workflow_dispatch:
   
+  pull_request:
+    types: [closed]
+    branches:
+      - stable
+      - main
 #  push:
 #    tags:
 #      - '*'
@@ -27,7 +32,9 @@ jobs:
             clean archive \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_ENTITLEMENTS=""
+            CODE_SIGN_ENTITLEMENTS="" \
+            PRODUCT_BUNDLE_IDENTIFIER=com.example.hiddenbar
+        
 
 
       - name: Package App
