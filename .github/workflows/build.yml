@@ -21,4 +21,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: xcodebuild -scheme Stats -destination 'platform=macOS' -configuration Release archive CODE_SIGNING_ALLOWED=NO
+      - run: xcodebuild -scheme 'Hidden Bar' -destination 'platform=macOS' -configuration Release archive CODE_SIGNING_ALLOWED=NO
