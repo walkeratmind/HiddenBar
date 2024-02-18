@@ -1,0 +1,24 @@
+name: build
+
+on: 
+  push:
+    branches:
+      - main
+      - stable
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+      - stable
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: xcodebuild -scheme Stats -destination 'platform=macOS' -configuration Release archive CODE_SIGNING_ALLOWED=NO
